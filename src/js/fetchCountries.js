@@ -7,6 +7,7 @@ const countryInfo = document.querySelector('.country-info');
 
 function fetchCountries(name) {
   if (!name) {
+    clearFields();
     return;
   }
   fetch(
@@ -14,7 +15,6 @@ function fetchCountries(name) {
   )
     .then(response => {
       if (!response.ok) {
-        // clearFields()
         throw onError;
       }
       return response.json();
@@ -30,7 +30,7 @@ export { fetchCountries };
 function showResult(countries) {
   if (countries.length > 10) {
     Notify.info('Too many matches found. Please enter a more specific name.');
-    // clearFields()
+    clearFields();
   }
   if (countries.length < 10) {
     createCountryListMarkup(countries);
