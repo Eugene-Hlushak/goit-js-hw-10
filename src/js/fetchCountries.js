@@ -14,7 +14,6 @@ function fetchCountries(name) {
         // clearFields()
         throw onError;
       }
-      console.log(response);
       return response.json();
     })
     .then(showResult)
@@ -39,7 +38,7 @@ function showResult(countries) {
 }
 
 function createCountryListMarkup(countries) {
-  clearCountryInfo();
+  countryInfo.innerHTML = '';
 
   const markupCountries = countries
     .map(
@@ -55,7 +54,7 @@ function createCountryListMarkup(countries) {
 }
 
 function createCountryMarkup(countries) {
-  clearCountries();
+  countryList.innerHTML = '';
 
   const { name, flags, population, languages, capital } = countries[0];
   countryInfo.innerHTML = `<div class='country'><img class="flag" src="${
@@ -75,14 +74,6 @@ function createCountryMarkup(countries) {
 
 function onError() {
   Notify.failure('Oops, there is no country with that name');
-}
-
-function clearCountries() {
-  countryList.innerHTML = '';
-}
-
-function clearCountryInfo() {
-  countryInfo.innerHTML = '';
 }
 
 function clearFields() {
